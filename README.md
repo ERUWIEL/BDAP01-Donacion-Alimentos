@@ -1,10 +1,11 @@
-# BDAP01-Donacion-Alimentos
-aplicación en java que permite gestionar la recepción y distribución de alimentos donados mediante MySQL y Java de la manera mas simple posible
-![MER_V2](./assets/MER_V2.png)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-
-##Script MySQL
+# BDAP01-Donacion-Alimentos
+Aplicación en java que permite gestionar la recepción y distribución de alimentos donados mediante MySQL y Java de la manera mas simple posible
+<br>
+![MER_V2](./assets/MER_V2.png)
+<b>Script MySQL</b>
+<br>
 CREATE DATABASE IF NOT EXISTS sistema_donaciones;
 USE sistema_donaciones;
 CREATE TABLE personas (
