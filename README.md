@@ -4,11 +4,17 @@
 # 🍽️ Sistema de Donaciones de Alimentos
 <br>
 Aplicación en java que permite gestionar la recepción y distribución de alimentos donados mediante MySQL y Java de la manera mas simple posible.
-<br><br>
+<br>
+Diagrama Entidad Relacion
+<br>
+
 ![MER_V2](./assets/MER_V2.png)
+
 <br>
+
+> **Nota**: Este modelo se simplifico por cuestiones del curso.
+
 ### Script MySQL
-<br>
 
 ```sql
 -- Creación de la base de datos implementando configuraciones de cascada
@@ -104,11 +110,6 @@ CREATE TABLE contenidos (
         ON UPDATE CASCADE
 );
 ```
-
-## 👥 Equipo de Desarrollo
-- [ERUWIEL]
-
-> **Nota**: Este modelo prioriza la **trazabilidad completa** sobre la simplicidad de consultas. Cada alimento puede rastrearse desde su donante original hasta su destino final.
 
 
 
