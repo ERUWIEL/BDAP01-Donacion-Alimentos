@@ -4,6 +4,7 @@
 Aplicación en java que permite gestionar la recepción y distribución de alimentos donados mediante MySQL y Java de la manera mas simple posible
 <br>
 ![MER_V2](./assets/MER_V2.png)
+<br>
 <b>Script MySQL</b>
 <br>
 CREATE DATABASE IF NOT EXISTS sistema_donaciones;
