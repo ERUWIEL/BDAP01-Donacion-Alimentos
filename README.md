@@ -2,10 +2,9 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 # 🍽️ Sistema de Donaciones de Alimentos
-<br>
 Aplicación en java que permite gestionar la recepción y distribución de alimentos donados mediante MySQL y Java de la manera mas simple posible.
 <br>
-Diagrama Entidad Relacion
+<b>Diagrama Entidad Relacion</b>
 <br>
 
 ![MER_V2](./assets/MER_V2.png)
