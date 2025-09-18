@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 public class Entrega {
 
-    public enum Estado {
+    public static enum Estado {
         PENDIENTE, EN_TRANSITO, ENTREGADA, CANCELADA
     }
     
