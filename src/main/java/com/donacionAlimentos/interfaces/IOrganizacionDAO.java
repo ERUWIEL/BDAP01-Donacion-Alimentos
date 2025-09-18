@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface IOrganizacionDAO {
 
-    void create(Organizacion organizacion);
+    boolean create(Organizacion organizacion);
 
     Organizacion read(int id);
 
-    void update(Organizacion organizacion);
+    boolean update(Organizacion organizacion);
 
-    void delete(int id);
+    boolean delete(int id);
 
     List<Organizacion> readAll();
 }

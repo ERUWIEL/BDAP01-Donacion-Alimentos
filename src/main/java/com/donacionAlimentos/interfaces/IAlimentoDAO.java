@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface IAlimentoDAO {
 
-    void create(Alimento alimento);
+    boolean create(Alimento alimento);
 
     Alimento read(int id);
 
-    void update(Alimento alimento);
+    boolean update(Alimento alimento);
 
-    void delete(int id);
+    boolean delete(int id);
 
     List<Alimento> readAll();
 }

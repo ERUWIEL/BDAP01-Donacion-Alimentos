@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface IPersonaDAO {
 
-    void create(Persona persona);
+    boolean create(Persona persona);
 
     Persona read(int id);
 
-    void update(Persona persona);
+    boolean update(Persona persona);
 
-    void delete(int id);
+    boolean delete(int id);
 
     List<Persona> readAll();
 }

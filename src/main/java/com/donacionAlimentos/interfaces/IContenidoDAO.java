@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface IContenidoDAO {
 
-    void create(Contenido contenido);
+    boolean create(Contenido contenido);
 
     Contenido read(int id);
 
-    void update(Contenido contenido);
+    boolean update(Contenido contenido);
 
-    void delete(int id);
+    boolean delete(int id);
 
     List<Contenido> readAll();
 }
