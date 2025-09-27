@@ -84,9 +84,10 @@ public class PersonaDAO implements IPersonaDAO {
     @Override
     public List<Persona> readAll() {
         String sql = "SELECT id_persona, nombre, apellido_paterno, apellido_materno, correo_electronico, numero_telefono, direccion FROM personas";
+        List<Persona> lista = new ArrayList<>();
+
         try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
-            List<Persona> personas = new ArrayList<>();
             while (rs.next()) {
                 Persona persona = new Persona();
                 persona.setIdPersona(rs.getInt("id_persona"));
@@ -96,15 +97,13 @@ public class PersonaDAO implements IPersonaDAO {
                 persona.setCorreo(rs.getString("correo_electronico"));
                 persona.setTelefono(rs.getString("numero_telefono"));
                 persona.setDireccion(rs.getString("direccion"));
-                personas.add(persona);
+                lista.add(persona);
             }
-            return personas;
-
         } catch (SQLException ex) {
-            System.out.println("Error al consultar personas");
-            System.out.println(ex.getMessage());
-            return new ArrayList<>();
+            System.out.println("Error al consultar personas: " + ex.getMessage());
         }
+
+        return lista;
     }
 
     /**
@@ -154,5 +153,73 @@ public class PersonaDAO implements IPersonaDAO {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+
+    /**
+     * metodo que filtra a todas las personas por nombre
+     * @param filtro
+     * @return 
+     */
+    @Override
+    public List<Persona> readByFilter(String filtro) {
+        String sql = "SELECT id_persona, nombre, apellido_paterno, apellido_materno, correo_electronico, numero_telefono, direccion FROM personas WHERE nombre LIKE ? LIMIT 100";
+        List<Persona> lista = new ArrayList<>();
+
+        try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + filtro + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Persona persona = new Persona();
+                persona.setIdPersona(rs.getInt("id_persona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setApPaterno(rs.getString("apellido_paterno"));
+                persona.setApMaterno(rs.getString("apellido_materno"));
+                persona.setCorreo(rs.getString("correo_electronico"));
+                persona.setTelefono(rs.getString("numero_telefono"));
+                persona.setDireccion(rs.getString("direccion"));
+                lista.add(persona);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener clientes por filtro: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+    /**
+     * metodo que filtra a todas las personas por nombre y telefono
+     * @param filtro
+     * @return 
+     */
+    @Override
+    public List<Persona> readByFilterModal(String filtro) {
+        String sql = "SELECT id_persona, nombre, apellido_paterno, apellido_materno, correo_electronico, numero_telefono, direccion FROM personas WHERE nombre LIKE ? OR numero_telefono LIKE ? LIMIT 100";
+        List<Persona> lista = new ArrayList<>();
+
+        try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + filtro + "%");
+            ps.setString(2, "%" + filtro + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Persona persona = new Persona();
+                persona.setIdPersona(rs.getInt("id_persona"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setApPaterno(rs.getString("apellido_paterno"));
+                persona.setApMaterno(rs.getString("apellido_materno"));
+                persona.setCorreo(rs.getString("correo_electronico"));
+                persona.setTelefono(rs.getString("numero_telefono"));
+                persona.setDireccion(rs.getString("direccion"));
+                lista.add(persona);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener clientes por filtro: " + e.getMessage());
+        }
+
+        return lista;
     }
 }
