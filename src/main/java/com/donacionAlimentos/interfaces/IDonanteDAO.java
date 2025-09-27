@@ -19,4 +19,8 @@ public interface IDonanteDAO {
     boolean delete(int id);
 
     List<Donante> readAll();
+    
+    List<Donante> readByFilter(String filtro);
+    
+    List<Donante> readByFilterModal(String filtro);
 }

@@ -19,4 +19,8 @@ public interface IOrganizacionDAO {
     boolean delete(int id);
 
     List<Organizacion> readAll();
+    
+    List<Organizacion> readByFilter(String filtro);
+    
+    List<Organizacion> readByFilterModal(String filtro);
 }

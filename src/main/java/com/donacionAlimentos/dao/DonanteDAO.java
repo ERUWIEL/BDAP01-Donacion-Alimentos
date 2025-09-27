@@ -136,4 +136,14 @@ public class DonanteDAO implements IDonanteDAO {
             return false;
         }
     }
+
+    @Override
+    public List<Donante> readByFilter(String filtro) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Donante> readByFilterModal(String filtro) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

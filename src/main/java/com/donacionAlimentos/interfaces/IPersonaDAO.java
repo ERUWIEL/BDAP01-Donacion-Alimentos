@@ -18,4 +18,8 @@ public interface IPersonaDAO {
     boolean delete(int id);
 
     List<Persona> readAll();
+    
+    List<Persona> readByFilter(String filtro);
+    
+    List<Persona> readByFilterModal(String filtro);
 }
