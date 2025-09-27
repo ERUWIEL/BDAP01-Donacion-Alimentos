@@ -18,6 +18,7 @@ public class pnlDonantes extends javax.swing.JPanel {
     public pnlDonantes() {
         initComponents();
         dntController = new DonanteController();
+        cargarDonantes();
         btnEliminar.setVisible(false);
     }
 
@@ -61,6 +62,9 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblCancelar = new PLabelButton();
         btnEliminar = new com.donacionAlimentos.view.components.PanelRound();
         lblEliminar = new PLabelButton();
+        scrlPaneDonantes = new javax.swing.JScrollPane();
+        tblDonantes = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(37, 37, 64));
         setPreferredSize(new java.awt.Dimension(860, 441));
@@ -253,7 +257,33 @@ public class pnlDonantes extends javax.swing.JPanel {
         btnEliminar.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 30));
 
         add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 290, 30));
+
+        scrlPaneDonantes.setBackground(new java.awt.Color(255, 255, 255));
+        scrlPaneDonantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        tblDonantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        scrlPaneDonantes.setViewportView(tblDonantes);
+
+        add(scrlPaneDonantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 12, 455, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        //buscar();
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -281,12 +311,20 @@ public class pnlDonantes extends javax.swing.JPanel {
     private javax.swing.JPanel pnlNombre;
     private javax.swing.JPanel pnlTelefono;
     private javax.swing.JPanel pnlTipo;
+    private javax.swing.JScrollPane scrlPaneDonantes;
+    private javax.swing.JTable tblDonantes;
     private javax.swing.JTextField txtApMaterno;
     private javax.swing.JTextField txtApPaterno;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDonantes(){
+        //tblDonantes.setModel(dntController.);
+    }
+
 }
