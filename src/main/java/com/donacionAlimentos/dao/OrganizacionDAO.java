@@ -11,11 +11,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * clase de acceso de datos ala tabla aportaciones
+ * clase de acceso de datos ala tabla organizaciones
  *
  * @author erwbyel
  */
 public class OrganizacionDAO implements IOrganizacionDAO {
+
+    private final String SQL_READ_BY_ID = """
+                                        SELECT 
+                                            o.id_persona,
+                                            o.nombre AS nombre_organizacion,
+                                            p.nombre AS nombre_persona,
+                                            p.apellido_paterno,
+                                            p.apellido_materno,
+                                            p.correo_electronico,
+                                            p.numero_telefono,
+                                            p.direccion
+                                        FROM organizaciones o
+                                        LEFT JOIN personas p ON o.id_persona = p.id_persona
+                                        WHERE o.id_persona = ?
+                                        """;
+    
+    private final String SQL_READ_ALL = """
+                                        SELECT 
+                                            o.id_persona,
+                                            o.nombre AS nombre_organizacion,
+                                            p.nombre AS nombre_persona,
+                                            p.apellido_paterno,
+                                            p.apellido_materno,
+                                            p.correo_electronico,
+                                            p.numero_telefono,
+                                            p.direccion
+                                        FROM organizaciones o
+                                        LEFT JOIN personas p ON o.id_persona = p.id_persona
+                                        """;
+    
+    private final String SQL_READ_BY_FILTER = """
+                                        SELECT 
+                                            o.id_persona,
+                                            o.nombre AS nombre_organizacion,
+                                            p.nombre AS nombre_persona,
+                                            p.apellido_paterno,
+                                            p.apellido_materno,
+                                            p.correo_electronico,
+                                            p.numero_telefono,
+                                            p.direccion
+                                        FROM organizaciones o
+                                        LEFT JOIN personas p ON o.id_persona = p.id_persona
+                                        """;
+    
+
+    
 
     /**
      * Método que permite insertar una organización
@@ -47,8 +93,7 @@ public class OrganizacionDAO implements IOrganizacionDAO {
      */
     @Override
     public Organizacion read(int id) {
-        String sql = "SELECT id_persona, nombre FROM organizaciones WHERE id_persona = ?";
-        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(sql)) {
+        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(SQL_READ_BY_ID)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -74,23 +119,18 @@ public class OrganizacionDAO implements IOrganizacionDAO {
      */
     @Override
     public List<Organizacion> readAll() {
-        String sql = "SELECT id_persona, nombre FROM organizaciones";
-        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-
-            List<Organizacion> organizaciones = new ArrayList<>();
+        List<Organizacion> organizaciones = new ArrayList<>();
+        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(SQL_READ_ALL); ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Organizacion organizacion = new Organizacion();
                 organizacion.setIdPersona(rs.getInt("id_persona"));
                 organizacion.setNombreOrganizacion(rs.getString("nombre"));
                 organizaciones.add(organizacion);
             }
-            return organizaciones;
-
         } catch (SQLException ex) {
-            System.out.println("Error al consultar organizaciones");
-            System.out.println(ex.getMessage());
-            return new ArrayList<>();
+            System.out.println("Error al consultar organizaciones: " + ex.getMessage());
         }
+        return organizaciones;
     }
 
     /**
@@ -135,5 +175,45 @@ public class OrganizacionDAO implements IOrganizacionDAO {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+
+    /**
+     * metodo que lista a las organizaciones por nombre
+     *
+     * @param filtro
+     * @return
+     */
+    @Override
+    public List<Organizacion> readByFilter(String filtro) {
+        List<Organizacion> organizaciones = new ArrayList<>();
+        
+        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(SQL_READ_BY_FILTER); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Organizacion organizacion = new Organizacion();
+                organizacion.setIdPersona(rs.getInt("id_persona"));
+                organizacion.setNombreOrganizacion(rs.getString("nombre"));
+                organizaciones.add(organizacion);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al consultar organizaciones: " + ex.getMessage());
+        }
+        return organizaciones;
+    }
+
+    @Override
+    public List<Organizacion> readByFilterModal(String filtro) {
+        String sql = "SELECT id_persona, nombre FROM organizaciones";
+        List<Organizacion> organizaciones = new ArrayList<>();
+        try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Organizacion organizacion = new Organizacion();
+                organizacion.setIdPersona(rs.getInt("id_persona"));
+                organizacion.setNombreOrganizacion(rs.getString("nombre"));
+                organizaciones.add(organizacion);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al consultar organizaciones: " + ex.getMessage());
+        }
+        return organizaciones;
     }
 }
