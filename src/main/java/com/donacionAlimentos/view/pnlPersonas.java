@@ -277,7 +277,11 @@ public class pnlPersonas extends javax.swing.JPanel {
 
             }
         ));
-        tblPersonas.setOpaque(false);
+        tblPersonas.setDefaultEditor(Object.class, null);
+        tblPersonas.getTableHeader().setReorderingAllowed(false);
+        tblPersonas.setRowHeight(25);
+        tblPersonas.setShowGrid(true);
+        tblPersonas.setGridColor(java.awt.Color.LIGHT_GRAY);
         tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPersonasMouseClicked(evt);
