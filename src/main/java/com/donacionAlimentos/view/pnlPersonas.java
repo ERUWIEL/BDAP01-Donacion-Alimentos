@@ -1,24 +1,24 @@
 
 package com.donacionAlimentos.view;
 
-import com.donacionAlimentos.controllers.DonanteController;
+import com.donacionAlimentos.controllers.PersonaController;
 import com.donacionAlimentos.view.components.PLabelButton;
 
 /**
  * clase tipo panel que permite gestionar visualmente a los donadores
  * @author erwbyel
  */
-public class pnlDonantes extends javax.swing.JPanel {
+public class pnlPersonas extends javax.swing.JPanel {
 
-    private DonanteController dntController;
+    private PersonaController prsController;
     
     /**
      * Creates new form pnlDonantes
      */
-    public pnlDonantes() {
+    public pnlPersonas() {
         initComponents();
-        dntController = new DonanteController();
-        cargarDonantes();
+        prsController = new PersonaController();
+        cargarPersonas();
         btnEliminar.setVisible(false);
     }
 
@@ -51,19 +51,14 @@ public class pnlDonantes extends javax.swing.JPanel {
         pnlCorreo = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
-        pnlDatosDonante = new com.donacionAlimentos.view.components.PanelRound();
-        lblTituloDD = new javax.swing.JLabel();
-        pnlTipo = new javax.swing.JPanel();
-        txtTipo = new javax.swing.JTextField();
-        lblTipo = new javax.swing.JLabel();
         btnGuardar = new com.donacionAlimentos.view.components.PanelRound();
         lblGuardar = new PLabelButton();
         btnCancelar = new com.donacionAlimentos.view.components.PanelRound();
         lblCancelar = new PLabelButton();
         btnEliminar = new com.donacionAlimentos.view.components.PanelRound();
         lblEliminar = new PLabelButton();
-        scrlPaneDonantes = new javax.swing.JScrollPane();
-        tblDonantes = new javax.swing.JTable();
+        scrlPanePersonas = new javax.swing.JScrollPane();
+        tblPersonas = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(37, 37, 64));
@@ -179,36 +174,7 @@ public class pnlDonantes extends javax.swing.JPanel {
 
         pnlDatosPersonales.add(pnlCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 300, 40));
 
-        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 370, 280));
-
-        pnlDatosDonante.setBackground(new java.awt.Color(23, 17, 55));
-        pnlDatosDonante.setRoundBottomRight(30);
-        pnlDatosDonante.setRoundTopRight(30);
-        pnlDatosDonante.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblTituloDD.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblTituloDD.setForeground(new java.awt.Color(255, 255, 255));
-        lblTituloDD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloDD.setText("Informacion Donante");
-        pnlDatosDonante.add(lblTituloDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 360, -1));
-
-        pnlTipo.setOpaque(false);
-        pnlTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtTipo.setBorder(null);
-        pnlTipo.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
-
-        lblTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTipo.setText("Tipo");
-        pnlTipo.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
-
-        pnlDatosDonante.add(pnlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 40));
-
-        add(pnlDatosDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 370, 100));
+        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 280));
 
         btnGuardar.setBackground(new java.awt.Color(0, 102, 0));
         btnGuardar.setRoundBottomLeft(20);
@@ -258,10 +224,10 @@ public class pnlDonantes extends javax.swing.JPanel {
 
         add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 290, 30));
 
-        scrlPaneDonantes.setBackground(new java.awt.Color(255, 255, 255));
-        scrlPaneDonantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        scrlPanePersonas.setBackground(new java.awt.Color(255, 255, 255));
+        scrlPanePersonas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        tblDonantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -269,9 +235,9 @@ public class pnlDonantes extends javax.swing.JPanel {
 
             }
         ));
-        scrlPaneDonantes.setViewportView(tblDonantes);
+        scrlPanePersonas.setViewportView(tblPersonas);
 
-        add(scrlPaneDonantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
+        add(scrlPanePersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -299,20 +265,16 @@ public class pnlDonantes extends javax.swing.JPanel {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
-    private javax.swing.JLabel lblTipo;
-    private javax.swing.JLabel lblTituloDD;
     private javax.swing.JLabel lblTituloDP;
     private javax.swing.JPanel pnlApMaterno;
     private javax.swing.JPanel pnlApPaterno;
     private javax.swing.JPanel pnlCorreo;
-    private com.donacionAlimentos.view.components.PanelRound pnlDatosDonante;
     private com.donacionAlimentos.view.components.PanelRound pnlDatosPersonales;
     private javax.swing.JPanel pnlId;
     private javax.swing.JPanel pnlNombre;
     private javax.swing.JPanel pnlTelefono;
-    private javax.swing.JPanel pnlTipo;
-    private javax.swing.JScrollPane scrlPaneDonantes;
-    private javax.swing.JTable tblDonantes;
+    private javax.swing.JScrollPane scrlPanePersonas;
+    private javax.swing.JTable tblPersonas;
     private javax.swing.JTextField txtApMaterno;
     private javax.swing.JTextField txtApPaterno;
     private javax.swing.JTextField txtBuscar;
@@ -320,11 +282,10 @@ public class pnlDonantes extends javax.swing.JPanel {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarDonantes(){
-        //tblDonantes.setModel(dntController.);
+    private void cargarPersonas(){
+        tblPersonas.setModel(prsController.obtenerTablaClientes());
     }
 
 }

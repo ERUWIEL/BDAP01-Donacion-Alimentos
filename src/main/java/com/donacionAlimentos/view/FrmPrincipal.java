@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 
 /**
  * clase manejadora de la navegacion
+ *
  * @author erwbyel
  */
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -24,8 +25,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setSize(860, 600);
         pnlContenido.setLayout(new CardLayout());
         pnlContenido.add(new pnlInicio(), "inicio");
+        //personas
+        pnlContenido.add(new pnlPersonas(), "personas");
         pnlContenido.add(new pnlDonantes(), "donadores");
         pnlContenido.add(new pnlOrganizaciones(), "organizaciones");
+        //objetos
         pnlContenido.add(new pnlAlimentos(), "alimentos");
         pnlContenido.add(new pnlAportaciones(), "aportaciones");
     }
@@ -42,6 +46,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pnlNavegacion = new javax.swing.JPanel();
         btnInicio = new javax.swing.JLabel();
+        btnPersonas = new PLabelButton();
         btnDonadores = new PLabelButton();
         btnOrganizaciones = new PLabelButton();
         btnAlimentos = new PLabelButton();
@@ -68,17 +73,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         pnlNavegacion.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
+        btnPersonas.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        btnPersonas.setForeground(new java.awt.Color(255, 255, 255));
+        btnPersonas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnPersonas.setText("Personas");
+        btnPersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPersonasMouseClicked(evt);
+            }
+        });
+        pnlNavegacion.add(btnPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 0, 100, 50));
+
         btnDonadores.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         btnDonadores.setForeground(new java.awt.Color(255, 255, 255));
         btnDonadores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnDonadores.setText("Donadores");
+        btnDonadores.setText("Donantes");
         btnDonadores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDonadores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDonadoresMouseClicked(evt);
             }
         });
-        pnlNavegacion.add(btnDonadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 0, 100, 50));
+        pnlNavegacion.add(btnDonadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 100, 50));
 
         btnOrganizaciones.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         btnOrganizaciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,7 +107,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnOrganizacionesMouseClicked(evt);
             }
         });
-        pnlNavegacion.add(btnOrganizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 150, 50));
+        pnlNavegacion.add(btnOrganizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 150, 50));
 
         btnAlimentos.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         btnAlimentos.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,7 +119,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnAlimentosMouseClicked(evt);
             }
         });
-        pnlNavegacion.add(btnAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 100, 50));
+        pnlNavegacion.add(btnAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 100, 50));
 
         btnAportaciones.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         btnAportaciones.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,7 +131,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnAportacionesMouseClicked(evt);
             }
         });
-        pnlNavegacion.add(btnAportaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 110, 50));
+        pnlNavegacion.add(btnAportaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 110, 50));
 
         getContentPane().add(pnlNavegacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 50));
 
@@ -161,6 +178,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         cl.show(pnlContenido, "donadores");
     }//GEN-LAST:event_btnDonadoresMouseClicked
 
+    private void btnPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonasMouseClicked
+        CardLayout cl = (CardLayout) pnlContenido.getLayout();
+        cl.show(pnlContenido, "personas");
+    }//GEN-LAST:event_btnPersonasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +220,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel btnDonadores;
     private javax.swing.JLabel btnInicio;
     private javax.swing.JLabel btnOrganizaciones;
+    private javax.swing.JLabel btnPersonas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel pnlContenido;
     private javax.swing.JPanel pnlNavegacion;
