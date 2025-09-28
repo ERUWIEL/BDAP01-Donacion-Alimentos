@@ -108,7 +108,40 @@ CREATE TABLE contenidos (
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
+
+-- SP para registrar una aportacion
+CREATE PROCEDURE sp_registrar_aportacion(
+    IN p_fecha_caducidad DATE,
+    IN p_cantidad DECIMAL(10,2),
+    IN p_id_donante INT,
+    IN p_id_alimento INT,
+    OUT p_id_aportacion INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+    
+    START TRANSACTION;
+    
+    -- Verificar que el donante existe
+    IF NOT EXISTS (SELECT 1 FROM donantes WHERE id_persona = p_id_donante) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Donante no existe';
+    END IF;
+    
+    -- Verificar que el alimento existe
+    IF NOT EXISTS (SELECT 1 FROM alimentos WHERE id_alimento = p_id_alimento) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Alimento no existe';
+    END IF;
+    
+    INSERT INTO aportaciones (fecha_caducidad, cantidad, id_donante, id_alimento)
+    VALUES (p_fecha_caducidad, p_cantidad, p_id_donante, p_id_alimento);
+    
+    SET p_id_aportacion = LAST_INSERT_ID();
+    
+    COMMIT;
+END 
 ```
-
-
 
