@@ -1,17 +1,19 @@
-
 package com.donacionAlimentos.view;
 
 import com.donacionAlimentos.controllers.PersonaController;
 import com.donacionAlimentos.view.components.PLabelButton;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  * clase tipo panel que permite gestionar visualmente a los donadores
+ *
  * @author erwbyel
  */
 public class pnlPersonas extends javax.swing.JPanel {
 
     private PersonaController prsController;
-    
+
     /**
      * Creates new form pnlDonantes
      */
@@ -51,6 +53,10 @@ public class pnlPersonas extends javax.swing.JPanel {
         pnlCorreo = new javax.swing.JPanel();
         txtCorreo = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
+        pnlDireccion = new javax.swing.JPanel();
+        txtDireccion = new javax.swing.JTextField();
+        lblDireccion = new javax.swing.JLabel();
+        pnlBotones = new javax.swing.JPanel();
         btnGuardar = new com.donacionAlimentos.view.components.PanelRound();
         lblGuardar = new PLabelButton();
         btnCancelar = new com.donacionAlimentos.view.components.PanelRound();
@@ -174,7 +180,26 @@ public class pnlPersonas extends javax.swing.JPanel {
 
         pnlDatosPersonales.add(pnlCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 300, 40));
 
-        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 280));
+        pnlDireccion.setOpaque(false);
+        pnlDireccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtDireccion.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtDireccion.setBorder(null);
+        pnlDireccion.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
+
+        lblDireccion.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
+        lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDireccion.setText("Direccion");
+        pnlDireccion.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
+
+        pnlDatosPersonales.add(pnlDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 300, 40));
+
+        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 320));
+
+        pnlBotones.setOpaque(false);
+        pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setBackground(new java.awt.Color(0, 102, 0));
         btnGuardar.setRoundBottomLeft(20);
@@ -188,9 +213,14 @@ public class pnlPersonas extends javax.swing.JPanel {
         lblGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGuardar.setText("GUARDAR");
         lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
+            }
+        });
         btnGuardar.add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
 
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 140, 30));
+        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 140, 30));
 
         btnCancelar.setBackground(new java.awt.Color(0, 51, 153));
         btnCancelar.setRoundBottomLeft(20);
@@ -204,9 +234,14 @@ public class pnlPersonas extends javax.swing.JPanel {
         lblCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCancelar.setText("CANCELAR");
         lblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCancelarMouseClicked(evt);
+            }
+        });
         btnCancelar.add(lblCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
 
-        add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 140, 30));
+        pnlBotones.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 140, 30));
 
         btnEliminar.setBackground(new java.awt.Color(153, 0, 0));
         btnEliminar.setRoundBottomLeft(20);
@@ -220,9 +255,16 @@ public class pnlPersonas extends javax.swing.JPanel {
         lblEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminar.setText("ELIMINAR");
         lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEliminarMouseClicked(evt);
+            }
+        });
         btnEliminar.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 30));
 
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 290, 30));
+        pnlBotones.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 290, 30));
+
+        add(pnlBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 380, 100));
 
         scrlPanePersonas.setBackground(new java.awt.Color(255, 255, 255));
         scrlPanePersonas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -235,6 +277,12 @@ public class pnlPersonas extends javax.swing.JPanel {
 
             }
         ));
+        tblPersonas.setOpaque(false);
+        tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonasMouseClicked(evt);
+            }
+        });
         scrlPanePersonas.setViewportView(tblPersonas);
 
         add(scrlPanePersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
@@ -248,8 +296,24 @@ public class pnlPersonas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        //buscar();
+        buscarPersonas();
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
+        cargarDatos();
+    }//GEN-LAST:event_tblPersonasMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        guardarPersona();
+    }//GEN-LAST:event_lblGuardarMouseClicked
+
+    private void lblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarMouseClicked
+        limpiarCampos();
+    }//GEN-LAST:event_lblCancelarMouseClicked
+
+    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
+        eliminarPersona();
+    }//GEN-LAST:event_lblEliminarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -260,6 +324,7 @@ public class pnlPersonas extends javax.swing.JPanel {
     private javax.swing.JLabel lblApPaterno;
     private javax.swing.JLabel lblCancelar;
     private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblId;
@@ -268,8 +333,10 @@ public class pnlPersonas extends javax.swing.JPanel {
     private javax.swing.JLabel lblTituloDP;
     private javax.swing.JPanel pnlApMaterno;
     private javax.swing.JPanel pnlApPaterno;
+    private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlCorreo;
     private com.donacionAlimentos.view.components.PanelRound pnlDatosPersonales;
+    private javax.swing.JPanel pnlDireccion;
     private javax.swing.JPanel pnlId;
     private javax.swing.JPanel pnlNombre;
     private javax.swing.JPanel pnlTelefono;
@@ -279,13 +346,131 @@ public class pnlPersonas extends javax.swing.JPanel {
     private javax.swing.JTextField txtApPaterno;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarPersonas(){
+    /**
+     * metodo interno para cargar datos en la tabla
+     */
+    private void cargarPersonas() {
         tblPersonas.setModel(prsController.obtenerTablaClientes());
     }
 
+    /**
+     * metodo interno que usa el controlador para guardar personas
+     */
+    private void guardarPersona() {
+        try {
+            String nombre = txtNombre.getText().trim();
+            String apPaterno = txtApPaterno.getText().trim();
+            String apMaterno = txtApMaterno.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+            String correo = txtCorreo.getText().trim();
+            String direccion = txtDireccion.getText().trim();
+            //validaciones de campos
+            if (nombre.isEmpty() || apPaterno.isEmpty() || direccion.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            //Guardar
+            if (lblGuardar.getText().equals("GUARDAR")) {
+                boolean exito = prsController.agregarPersona(nombre, apPaterno, apMaterno, telefono, correo, direccion);
+
+                if (exito) {
+                    JOptionPane.showMessageDialog(this, "persona registrada correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al registrar ala persona", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                //Actualizar
+            } else {
+                System.out.println("ACtualizar persona");
+                int id = Integer.parseInt(txtId.getText());
+                boolean exito = prsController.actualizarPersona(id, nombre, apPaterno, apMaterno, telefono, correo, direccion);
+                if (exito) {
+                    JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al actualizar los datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            cargarPersonas();   // refrescar tabla
+            limpiarCampos();    // limpiar campos de texto
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * metodo interno de utilidad
+     */
+    private void limpiarCampos() {
+        txtId.setText("0");
+        txtNombre.setText("");
+        txtApPaterno.setText("");
+        txtApMaterno.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        lblGuardar.setText("GUARDAR");
+        btnEliminar.setVisible(false);
+    }
+
+    /**
+     * metodo de utileria
+     */
+    private void cargarDatos() {
+        int fila = tblPersonas.getSelectedRow();
+        if (fila >= 0) {
+            txtId.setText(tblPersonas.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblPersonas.getValueAt(fila, 1).toString());
+            txtApPaterno.setText(tblPersonas.getValueAt(fila, 2).toString());
+            txtApMaterno.setText(tblPersonas.getValueAt(fila, 3).toString());
+            txtTelefono.setText(tblPersonas.getValueAt(fila, 4).toString());
+            txtCorreo.setText(tblPersonas.getValueAt(fila, 5).toString());
+            txtDireccion.setText(tblPersonas.getValueAt(fila, 6).toString());
+
+            lblGuardar.setText("ACTUALIZAR");
+            btnEliminar.setVisible(true);
+        }
+    }
+    
+    /**
+     * metodo que usa el controlador para eliminar una persona
+     */
+    private void eliminarPersona() {
+        try {
+            int id = Integer.parseInt(txtId.getText());
+            int confirm = JOptionPane.showConfirmDialog(this,"¿Seguro que quieres eliminar a esta persona?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                boolean exito = prsController.eliminarPersona(id);
+
+                if (exito) {
+                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente.");
+                    cargarPersonas();
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(this,"Ocurrio un error al eliminar la persona.","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    /**
+     * metodo para usar el filtro modal
+     */
+    private void buscarPersonas() {
+        String nombre = txtBuscar.getText().trim();
+        if (nombre.isEmpty()) {
+            cargarPersonas();
+        } else {
+            tblPersonas.setModel(prsController.obtenerTablaClientesPorFiltro(nombre));
+        }
+    }
 }
