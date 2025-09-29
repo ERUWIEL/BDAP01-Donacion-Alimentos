@@ -6,20 +6,12 @@
 Plataforma de Donación de Alimentos
 En la ciudad se desperdician diariamente toneladas de comida en supermercados, restaurantes y otros establecimientos, mientras que miles de familias viven en situación de inseguridad alimentaria. Ante esta problemática, un grupo de jóvenes propone el desarrollo de una plataforma digital de donación de alimentos que conecte a donadores con organizaciones comunitarias que los distribuyan a quienes más lo necesitan.
 
-<br>
-
 El sistema deberá contemplar los siguientes aspectos:
 Registro de donadores: cada donador podrá registrarse proporcionando información como nombre, tipo de donador (supermercado, restaurante, particular, etc.), dirección, teléfono y correo electrónico.
 
-<br>
-
 Registro de alimentos donados: cada vez que un donador realice una aportación, se deberá registrar el nombre del alimento, su categoría (por ejemplo: frutas, verduras, enlatados, panadería, etc.), la fecha de caducidad y la cantidad disponible, vinculándolo con el donador que lo proporciona.
 
-<br>
-
 Registro de organizaciones beneficiarias: las organizaciones comunitarias que recibirán los apoyos también deberán registrarse, indicando nombre, responsable, dirección, teléfono y correo electrónico.
-
-<br>
 
 Gestión de entregas: cada entrega deberá quedar registrada con información como la fecha de entrega, el alimento entregado, la organización beneficiada y el estado de la entrega (pendiente, en tránsito, completada, cancelada), lo que permitirá dar un seguimiento claro y transparente de los productos desde su donación hasta
 
@@ -31,6 +23,10 @@ Gestión de entregas: cada entrega deberá quedar registrada con información co
 ![MER_V2](./assets/MER_V2.png)
 
 <br>
+
+<b>Diagrama MR</b>
+
+![MR_V2](./assets/MR_V2.png)
 
 > **Nota**: leer hasta el final, estan los SP y las Vistas
 
@@ -131,135 +127,7 @@ CREATE TABLE contenidos (
 );
 ```
 
-### Modulos SP Utilizados
-
-```sql
-DELIMITER $
-
-DROP PROCEDURE IF EXISTS sp_registrar_aportacion$
-
-CREATE PROCEDURE sp_registrar_aportacion(
-    IN p_fecha_caducidad DATE,
-    IN p_cantidad DECIMAL(10,2),
-    IN p_id_donante INT,
-    IN p_id_alimento INT,
-    OUT p_id_aportacion INT
-)
-BEGIN
-    -- Handler para manejar errores SQL
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-    
-    START TRANSACTION;
-    
-    -- Verificar que el donante existe
-    IF NOT EXISTS (SELECT 1 FROM donantes WHERE id_persona = p_id_donante) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Donante no existe';
-    END IF;
-    
-    -- Verificar que el alimento existe
-    IF NOT EXISTS (SELECT 1 FROM alimentos WHERE id_alimento = p_id_alimento) THEN
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Alimento no existe';
-    END IF;
-    
-    -- Insertar la aportacion
-    INSERT INTO aportaciones (fecha_caducidad, cantidad, id_donante, id_alimento)
-    VALUES (p_fecha_caducidad, p_cantidad, p_id_donante, p_id_alimento);
-    
-    -- Obtener el ID generado
-    SET p_id_aportacion = LAST_INSERT_ID();
-    
-    COMMIT;
-    
-END$$
-
-DELIMITER ;
-
--- SP adicional para consultar aportaciones por donante
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS sp_consultar_aportaciones_donante$$
-
-CREATE PROCEDURE sp_consultar_aportaciones_donante(
-    IN p_id_donante INT
-)
-BEGIN
-    SELECT 
-        a.id_aportacion,
-        a.fecha_caducidad,
-        a.cantidad,
-        al.nombre AS nombre_alimento,
-        al.tipo_alimento,
-        CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) AS donante
-    FROM aportaciones a
-    INNER JOIN alimentos al ON a.id_alimento = al.id_alimento
-    INNER JOIN donantes d ON a.id_donante = d.id_persona
-    INNER JOIN personas p ON d.id_persona = p.id_persona
-    WHERE a.id_donante = p_id_donante
-    ORDER BY a.fecha_caducidad ASC;
-END$$
-
-DELIMITER ;
-
--- SP para actualizar cantidad de alimento despues de aportacion
-DELIMITER $$
-
-DROP PROCEDURE IF EXISTS sp_actualizar_cantidad_alimento$$
-
-CREATE PROCEDURE sp_actualizar_cantidad_alimento(
-    IN p_id_alimento INT,
-    IN p_cantidad_adicional DECIMAL(10,2),
-    OUT p_mensaje VARCHAR(255)
-)
-BEGIN
-    DECLARE v_cantidad_actual DECIMAL(10,2) DEFAULT 0;
-    DECLARE v_alimento_existe INT DEFAULT 0;
-    
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        SET p_mensaje = 'Error al actualizar cantidad del alimento';
-        ROLLBACK;
-        RESIGNAL;
-    END;
-    
-    SET p_mensaje = '';
-    
-    START TRANSACTION;
-    
-    -- Verificar que el alimento existe y obtener cantidad actual
-    SELECT COUNT(*), IFNULL(MAX(cantidad), 0) 
-    INTO v_alimento_existe, v_cantidad_actual
-    FROM alimentos 
-    WHERE id_alimento = p_id_alimento;
-    
-    IF v_alimento_existe = 0 THEN
-        SET p_mensaje = 'El alimento especificado no existe';
-        ROLLBACK;
-    ELSE
-        -- Actualizar la cantidad
-        UPDATE alimentos 
-        SET cantidad = cantidad + p_cantidad_adicional
-        WHERE id_alimento = p_id_alimento;
-        
-        SET p_mensaje = 'Cantidad de alimento actualizada exitosamente';
-        COMMIT;
-    END IF;
-    
-END$$
-
-DELIMITER ;
-```
-
-### Modulos de Vistas
-
-```sql
-    -- poner vistas
-```
-
-> **Nota**: gracias por llegar aca aqui tienes un Script con Insersiones para agilizar la rebicion.
+> **Nota**: gracias por llegar aca aqui tienes un Script con Insersiones para agilizar la revision.
 
 ### Script Insert de Apoyo
 ```sql
