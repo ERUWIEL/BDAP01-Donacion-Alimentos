@@ -23,18 +23,29 @@ public class PersonaController {
     }
 
     /**
-     * metodo que permite agregar a una nueva persona
+     * metodo que permite agregar una nueva persona
      *
-     * @param persona
+     * @param nombre
+     * @param apPaterno
+     * @param apMaterno
+     * @param telefono
+     * @param correo
+     * @param direccion
      * @return
      */
-    public boolean agregarPersona(Persona persona) {
-        if (persona == null || persona.getNombre() == null || persona.getNombre().trim().isEmpty()
-                || persona.getCorreo() == null || persona.getCorreo().trim().isEmpty()) {
-            System.out.println("Error: Persona o datos obligatorios no válidos");
+    public boolean agregarPersona(String nombre, String apPaterno, String apMaterno, String telefono, String correo, String direccion) {
+        if (nombre.isEmpty() || apPaterno.isEmpty() || direccion.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
             return false;
+        } else {
+            Persona persona = new Persona();
+            persona.setNombre(nombre);
+            persona.setApPaterno(apPaterno);
+            persona.setApMaterno(apMaterno);
+            persona.setTelefono(telefono);
+            persona.setCorreo(correo);
+            persona.setDireccion(direccion);
+            return personaDAO.create(persona);
         }
-        return personaDAO.create(persona);
     }
 
     /**
@@ -61,18 +72,30 @@ public class PersonaController {
     }
 
     /**
-     * metodo que permite actualizar a una persona
-     *
-     * @param persona
-     * @return
+     * metodo que permite actualizar una persona
+     * @param id
+     * @param nombre
+     * @param apPaterno
+     * @param apMaterno
+     * @param telefono
+     * @param correo
+     * @param direccion
+     * @return 
      */
-    public boolean actualizarPersona(Persona persona) {
-        if (persona == null || persona.getIdPersona() <= 0
-                || persona.getNombre() == null || persona.getNombre().trim().isEmpty()) {
-            System.out.println("Error: Persona no válida para actualizar");
+    public boolean actualizarPersona(Integer id, String nombre, String apPaterno, String apMaterno, String telefono, String correo, String direccion) {
+        if (id == null || nombre.isEmpty() || apPaterno.isEmpty() || direccion.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
             return false;
+        } else {
+            Persona persona = new Persona();
+            persona.setIdPersona(id);
+            persona.setNombre(nombre);
+            persona.setApPaterno(apPaterno);
+            persona.setApMaterno(apMaterno);
+            persona.setTelefono(telefono);
+            persona.setCorreo(correo);
+            persona.setDireccion(direccion);
+            return personaDAO.update(persona);
         }
-        return personaDAO.update(persona);
     }
 
     /**
@@ -95,12 +118,13 @@ public class PersonaController {
      *
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaClientes() {
-        String[] columnas = {"ID", "NOMBRE", "DIRECCIÓN", "TELEFÓNO"};
+    public DefaultTableModel obtenerTablaPersonas() {
+        String[] columnas = {"ID", "NOMBRE", "PATERNO", "MATERNO", "TELEFONO", "CORREO", "DIRECCION"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+        
         List<Persona> lista = personaDAO.readAll();
         for (Persona p : lista) {
-            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getDireccion(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getApPaterno(), p.getApMaterno() , p.getTelefono(), p.getCorreo(),p.getDireccion()});
         }
         return modelo;
     }
@@ -111,27 +135,28 @@ public class PersonaController {
      * @param filtro
      * @return formato de tabla
      */
-    public DefaultTableModel obtenerTablaClientesPorFiltro(String filtro) {
-        String[] columnas = {"ID", "NOMBRE", "DIRECCIÓN", "TELEFÓNO"};
+    public DefaultTableModel obtenerTablaPersonasPorFiltro(String filtro) {
+        String[] columnas = {"ID", "NOMBRE", "PATERNO", "MATERNO", "TELEFONO", "CORREO", "DIRECCION"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Persona> lista = personaDAO.readByFilter(filtro);
         for (Persona p : lista) {
-            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getDireccion(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getApPaterno(), p.getApMaterno() , p.getTelefono(), p.getCorreo(),p.getDireccion()});
         }
         return modelo;
     }
 
     /**
      * metodo que tabula las personas por filtro modal
+     *
      * @param filtro
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaClientesPorFiltroModal(String filtro) {
-        String[] columnas = {"ID", "NOMBRE", "TELEFÓNO"};
+    public DefaultTableModel obtenerTablaPersonasPorFiltroModal(String filtro) {
+        String[] columnas = {"ID", "NOMBRE", "APELLIDOS(S)", "TELEFONO"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Persona> lista = personaDAO.readByFilterModal(filtro);
         for (Persona p : lista) {
-            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getDireccion(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getApPaterno() + "   " + p.getApMaterno(), p.getTelefono()});
         }
         return modelo;
     }
