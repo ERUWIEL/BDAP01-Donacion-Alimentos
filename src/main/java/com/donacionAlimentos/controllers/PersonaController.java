@@ -4,7 +4,6 @@ import com.donacionAlimentos.dao.PersonaDAO;
 import com.donacionAlimentos.interfaces.IPersonaDAO;
 import com.donacionAlimentos.models.Persona;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -119,7 +118,7 @@ public class PersonaController {
      *
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaClientes() {
+    public DefaultTableModel obtenerTablaPersonas() {
         String[] columnas = {"ID", "NOMBRE", "PATERNO", "MATERNO", "TELEFONO", "CORREO", "DIRECCION"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         
@@ -136,7 +135,7 @@ public class PersonaController {
      * @param filtro
      * @return formato de tabla
      */
-    public DefaultTableModel obtenerTablaClientesPorFiltro(String filtro) {
+    public DefaultTableModel obtenerTablaPersonasPorFiltro(String filtro) {
         String[] columnas = {"ID", "NOMBRE", "PATERNO", "MATERNO", "TELEFONO", "CORREO", "DIRECCION"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Persona> lista = personaDAO.readByFilter(filtro);
@@ -152,12 +151,12 @@ public class PersonaController {
      * @param filtro
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaClientesPorFiltroModal(String filtro) {
-        String[] columnas = {"ID", "NOMBRE", "PATERNO", "MATERNO", "TELEFONO", "CORREO", "DIRECCION"};
+    public DefaultTableModel obtenerTablaPersonasPorFiltroModal(String filtro) {
+        String[] columnas = {"ID", "NOMBRE", "APELLIDOS(S)", "TELEFONO"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Persona> lista = personaDAO.readByFilterModal(filtro);
         for (Persona p : lista) {
-            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getApPaterno(), p.getApMaterno() , p.getTelefono(), p.getCorreo(),p.getDireccion()});
+            modelo.addRow(new Object[]{p.getIdPersona(), p.getNombre(), p.getApPaterno() + "   " + p.getApMaterno(), p.getTelefono()});
         }
         return modelo;
     }
