@@ -360,7 +360,7 @@ public class pnlPersonas extends javax.swing.JPanel {
      * metodo interno para cargar datos en la tabla
      */
     private void cargarPersonas() {
-        tblPersonas.setModel(prsController.obtenerTablaClientes());
+        tblPersonas.setModel(prsController.obtenerTablaPersonas());
     }
 
     /**
@@ -392,7 +392,6 @@ public class pnlPersonas extends javax.swing.JPanel {
 
                 //Actualizar
             } else {
-                System.out.println("ACtualizar persona");
                 int id = Integer.parseInt(txtId.getText());
                 boolean exito = prsController.actualizarPersona(id, nombre, apPaterno, apMaterno, telefono, correo, direccion);
                 if (exito) {
@@ -474,7 +473,7 @@ public class pnlPersonas extends javax.swing.JPanel {
         if (nombre.isEmpty()) {
             cargarPersonas();
         } else {
-            tblPersonas.setModel(prsController.obtenerTablaClientesPorFiltro(nombre));
+            tblPersonas.setModel(prsController.obtenerTablaPersonasPorFiltro(nombre));
         }
     }
 }
