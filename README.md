@@ -28,7 +28,11 @@ Gestión de entregas: cada entrega deberá quedar registrada con información co
 
 ![MR_V2](./assets/MR_V2.png)
 
-> **Nota**: leer hasta el final, estan los SP y las Vistas
+<br>
+
+<b>Diagrama SQL</b>
+
+![SQLDiagram](./assets/SQLDiagram.png)
 
 ### Script MySQL
 
@@ -236,4 +240,12 @@ INSERT INTO contenidos (id_alimento, id_entrega, id_aportacion) VALUES
 (4, 5, 14);  -- Atun de Roberto Garcia
 ```
 
-> **Nota**: quiero agradecer a mi perro chihuahua por hacer esto posible. 
+<br>
+
+<b>Pantallas</b>
+<br>
+![FrmPersonas](./assets/FrmPersonas.png)
+<br>
+![FrmAlimentos](./assets/FrmAlimentos.png)
+<br>
+![FrmOrganizaciones](./assets/FrmOrganizaciones.png)
