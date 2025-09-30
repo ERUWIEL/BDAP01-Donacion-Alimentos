@@ -4,13 +4,12 @@
  */
 package com.donacionAlimentos.view;
 
-import com.donacionAlimentos.view.components.PLabelButton;
-import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
 
 /**
- * clase manejadora de la navegacion
  *
- * @author erwbyel
+ * @author saidr
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -19,20 +18,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     public FrmPrincipal() {
         initComponents();
-        setTitle("Sistema Donaciones");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(860, 600);
-        pnlContenido.setLayout(new CardLayout());
-        pnlContenido.add(new pnlInicio(), "inicio");
-        //personas
-        pnlContenido.add(new pnlPersonas(), "personas");
-        pnlContenido.add(new pnlDonantes(), "donadores");
-        pnlContenido.add(new pnlOrganizaciones(), "organizaciones");
-        //objetos
-        pnlContenido.add(new pnlAlimentos(), "alimentos");
-        pnlContenido.add(new pnlAportaciones(), "aportaciones");
     }
+    private void mostrarEnPanel(JFrame frame) {
+    panelContenido.removeAll();             // limpiar panel
+    panelContenido.setLayout(new BorderLayout()); // definir layout
+    panelContenido.add(frame.getContentPane(), BorderLayout.CENTER); // agregar contenido
+    panelContenido.revalidate();            // refrescar panel
+    panelContenido.repaint();               // repintar
+    frame.pack();                           // ajustar tamaño
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,145 +38,152 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        pnlNavegacion = new javax.swing.JPanel();
-        btnInicio = new javax.swing.JLabel();
-        btnPersonas = new PLabelButton();
-        btnDonadores = new PLabelButton();
-        btnOrganizaciones = new PLabelButton();
-        btnAlimentos = new PLabelButton();
-        btnAportaciones = new PLabelButton();
-        pnlContenido = new javax.swing.JPanel();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        panelContenido = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenu();
+        donante = new javax.swing.JMenuItem();
+        aportaciones = new javax.swing.JMenuItem();
+        alimentos = new javax.swing.JMenuItem();
+        entregas = new javax.swing.JMenuItem();
+        contenido = new javax.swing.JMenuItem();
+        personas = new javax.swing.JMenuItem();
+        organizacion = new javax.swing.JMenuItem();
 
-        jLabel1.setText("jLabel1");
+        jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlNavegacion.setBackground(new java.awt.Color(23, 17, 55));
-        pnlNavegacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnInicio.setBackground(new java.awt.Color(255, 255, 255));
-        btnInicio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/inicio-icon.png"))); // NOI18N
-        btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInicio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInicioMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
-
-        btnPersonas.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        btnPersonas.setForeground(new java.awt.Color(255, 255, 255));
-        btnPersonas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnPersonas.setText("Personas");
-        btnPersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPersonasMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 0, 100, 50));
-
-        btnDonadores.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        btnDonadores.setForeground(new java.awt.Color(255, 255, 255));
-        btnDonadores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnDonadores.setText("Donantes");
-        btnDonadores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDonadores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDonadoresMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnDonadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 100, 50));
-
-        btnOrganizaciones.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        btnOrganizaciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnOrganizaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnOrganizaciones.setText("Organizaciones");
-        btnOrganizaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnOrganizaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOrganizacionesMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnOrganizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 150, 50));
-
-        btnAlimentos.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        btnAlimentos.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlimentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAlimentos.setText("Alimentos");
-        btnAlimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAlimentos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAlimentosMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 100, 50));
-
-        btnAportaciones.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        btnAportaciones.setForeground(new java.awt.Color(255, 255, 255));
-        btnAportaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAportaciones.setText("Aportaciones");
-        btnAportaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAportaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAportacionesMouseClicked(evt);
-            }
-        });
-        pnlNavegacion.add(btnAportaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 110, 50));
-
-        getContentPane().add(pnlNavegacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 50));
-
-        pnlContenido.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
-        pnlContenido.setLayout(pnlContenidoLayout);
-        pnlContenidoLayout.setHorizontalGroup(
-            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelContenidoLayout = new javax.swing.GroupLayout(panelContenido);
+        panelContenido.setLayout(panelContenidoLayout);
+        panelContenidoLayout.setHorizontalGroup(
+            panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 789, Short.MAX_VALUE)
         );
-        pnlContenidoLayout.setVerticalGroup(
-            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+        panelContenidoLayout.setVerticalGroup(
+            panelContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 860, 550));
+        menuBar.setText("MENU");
+
+        donante.setText("Donante");
+        donante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                donanteActionPerformed(evt);
+            }
+        });
+        menuBar.add(donante);
+
+        aportaciones.setText("Aportaciones");
+        aportaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aportacionesActionPerformed(evt);
+            }
+        });
+        menuBar.add(aportaciones);
+
+        alimentos.setText("Alimento");
+        alimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alimentosActionPerformed(evt);
+            }
+        });
+        menuBar.add(alimentos);
+
+        entregas.setText("Entregas");
+        entregas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entregasActionPerformed(evt);
+            }
+        });
+        menuBar.add(entregas);
+
+        contenido.setText("Contenido");
+        contenido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contenidoActionPerformed(evt);
+            }
+        });
+        menuBar.add(contenido);
+
+        personas.setText("Personas");
+        personas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personasActionPerformed(evt);
+            }
+        });
+        menuBar.add(personas);
+
+        organizacion.setText("Organizacion");
+        organizacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizacionActionPerformed(evt);
+            }
+        });
+        menuBar.add(organizacion);
+
+        jMenuBar1.add(menuBar);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "inicio");
-    }//GEN-LAST:event_btnInicioMouseClicked
+    private void donanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donanteActionPerformed
+        // TODO add your handling code here:
+            FrmDonante frm = new FrmDonante();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_donanteActionPerformed
 
-    private void btnOrganizacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrganizacionesMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "organizaciones");
-    }//GEN-LAST:event_btnOrganizacionesMouseClicked
+    private void alimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alimentosActionPerformed
+        // TODO add your handling code here:
+            FrmAlimento frm = new FrmAlimento();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_alimentosActionPerformed
 
-    private void btnAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlimentosMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "alimentos");
-    }//GEN-LAST:event_btnAlimentosMouseClicked
+    private void organizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizacionActionPerformed
+        // TODO add your handling code here
+            FrmOrganizacion frm = new FrmOrganizacion();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_organizacionActionPerformed
 
-    private void btnAportacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAportacionesMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "aportaciones");
-    }//GEN-LAST:event_btnAportacionesMouseClicked
+    private void entregasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entregasActionPerformed
+        // TODO add your handling code here
+       FrmEntrega frm = new FrmEntrega();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_entregasActionPerformed
 
-    private void btnDonadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDonadoresMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "donadores");
-    }//GEN-LAST:event_btnDonadoresMouseClicked
+    private void contenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contenidoActionPerformed
+        // TODO add your handling code here:
+         FrmContenido frm = new FrmContenido();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_contenidoActionPerformed
 
-    private void btnPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPersonasMouseClicked
-        CardLayout cl = (CardLayout) pnlContenido.getLayout();
-        cl.show(pnlContenido, "personas");
-    }//GEN-LAST:event_btnPersonasMouseClicked
+    private void personasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personasActionPerformed
+        // TODO add your handling code here:
+            FrmPersona frm = new FrmPersona();
+    mostrarEnPanel(frm);
+    }//GEN-LAST:event_personasActionPerformed
+
+    private void aportacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aportacionesActionPerformed
+        // TODO add your handling code here:
+        FrmAportacion frm = new FrmAportacion();
+        mostrarEnPanel(frm);
+    }//GEN-LAST:event_aportacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,18 +213,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmPrincipal().setVisible(true));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmPrincipal().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnAlimentos;
-    private javax.swing.JLabel btnAportaciones;
-    private javax.swing.JLabel btnDonadores;
-    private javax.swing.JLabel btnInicio;
-    private javax.swing.JLabel btnOrganizaciones;
-    private javax.swing.JLabel btnPersonas;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel pnlContenido;
-    private javax.swing.JPanel pnlNavegacion;
+    private javax.swing.JMenuItem alimentos;
+    private javax.swing.JMenuItem aportaciones;
+    private javax.swing.JMenuItem contenido;
+    private javax.swing.JMenuItem donante;
+    private javax.swing.JMenuItem entregas;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu menuBar;
+    private javax.swing.JMenuItem organizacion;
+    private javax.swing.JPanel panelContenido;
+    private javax.swing.JMenuItem personas;
     // End of variables declaration//GEN-END:variables
 }

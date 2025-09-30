@@ -64,7 +64,6 @@ public class DonanteController {
     /**
      * metodo que permite actualizar un donante
      * @param idPersona
-     * @param idPersonaNueva
      * @param tipoNuevo
      * @return 
      */
@@ -100,7 +99,7 @@ public class DonanteController {
      *
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaPersonas() {
+    public DefaultTableModel obtenerTablaDonantes() {
         String[] columnas = {"ID", "TIPO"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
 
@@ -117,7 +116,7 @@ public class DonanteController {
      * @param filtro
      * @return formato de tabla
      */
-    public DefaultTableModel obtenerTablaPersonasPorFiltro(String filtro) {
+    public DefaultTableModel obtenerTablaDonantesPorFiltro(String filtro) {
         String[] columnas = {"ID", "TIPO"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Donante> lista = donanteDAO.readByFilter(filtro);
@@ -133,7 +132,7 @@ public class DonanteController {
      * @param filtro
      * @return formato tabla
      */
-    public DefaultTableModel obtenerTablaPersonasPorFiltroModal(String filtro) {
+    public DefaultTableModel obtenerTablaDonantesPorFiltroModal(String filtro) {
         String[] columnas = {"ID", "TIPO"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         List<Donante> lista = donanteDAO.readByFilter(filtro);
