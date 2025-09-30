@@ -248,4 +248,4 @@ INSERT INTO contenidos (id_alimento, id_entrega, id_aportacion) VALUES
 <br>
 ![FrmAlimentos](./assets/FrmAlimentos.png)
 <br>
-![FrmOrganizaciones](./assets/FrmOrganizaciones.png)
+![FrmOrganizaciones](./assets/FrmOrganizacion.png)
