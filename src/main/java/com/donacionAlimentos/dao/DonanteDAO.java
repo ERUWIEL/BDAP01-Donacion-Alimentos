@@ -74,7 +74,7 @@ public class DonanteDAO implements IDonanteDAO {
      */
     @Override
     public List<Donante> readAll() {
-        String sql = "SELECT d.id_persona, d.tipo_donante, p.nombre, p.apellido_paterno, p.correo_electronico FROM donantes d INNER JOIN personas p ON d.id_persona = p.id_persona";
+        String sql = "SELECT id_persona, tipo_donante FROM donantes";
         try (Connection cn = ConexionDB.getConnection(); PreparedStatement ps = cn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             List<Donante> donantes = new ArrayList<>();
@@ -135,5 +135,62 @@ public class DonanteDAO implements IDonanteDAO {
             System.out.println(ex.getMessage());
             return false;
         }
+    }
+
+    /**
+     * metodo que permite consultar mediante filtros
+     *
+     * @param filtro
+     * @return
+     */
+    @Override
+    public List<Donante> readByFilter(String filtro) {
+        String sql = "SELECT id_persona, tipo_donante FROM donantes WHERE tipo_donante LIKE ? LIMIT 100";
+        List<Donante> lista = new ArrayList<>();
+
+        try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + filtro + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Donante donante = new Donante();
+                donante.setIdPersona(rs.getInt("id_persona"));
+                donante.setTipo(rs.getString("tipo_donante"));
+                lista.add(donante);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener donantes por filtro: " + e.getMessage());
+        }
+
+        return lista;
+    }
+
+    /**
+     * metodo que permite consultar mediante un filtro modal
+     * @param filtro
+     * @return
+     */
+    @Override
+    public List<Donante> readByFilterModal(String filtro) {
+        String sql = "SELECT id_persona, tipo_donante FROM donantes WHERE id_pesona LIKE ? OR tipo_donante LIKE ? LIMIT 100";
+        List<Donante> lista = new ArrayList<>();
+
+        try (Connection conn = ConexionDB.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%" + filtro + "%");
+            ps.setString(2, "%" + filtro + "%");
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Donante donante = new Donante();
+                donante.setIdPersona(rs.getInt("id_persona"));
+                donante.setTipo(rs.getString("tipo_donante"));
+                lista.add(donante);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al obtener donantes por filtro: " + e.getMessage());
+        }
+
+        return lista;
     }
 }
