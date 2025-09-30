@@ -1,27 +1,30 @@
 package com.donacionAlimentos.view;
 
-import com.donacionAlimentos.controllers.PersonaController;
+import com.donacionAlimentos.controllers.AlimentoController;
+import com.donacionAlimentos.view.components.DlgBuscarPersonas;
 import com.donacionAlimentos.view.components.PLabelButton;
 import java.awt.HeadlessException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  * clase tipo panel que permite gestionar visualmente a los donadores
  *
  * @author erwbyel
  */
-public class pnlPersonas extends javax.swing.JPanel {
-
-    private PersonaController prsController;
+public class pnlAlimentos extends javax.swing.JPanel {
+     
+    private AlimentoController almController;
 
     /**
      * Creates new form pnlDonantes
      */
-    public pnlPersonas() {
+    public pnlAlimentos() {
         initComponents();
-        prsController = new PersonaController();
-        cargarPersonas();
-        btnEliminar.setVisible(false);
+        almController = new AlimentoController();
+        cargarAlimentos();
+        btnLimpieza.setVisible(false);
     }
 
     /**
@@ -41,30 +44,21 @@ public class pnlPersonas extends javax.swing.JPanel {
         pnlNombre = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
-        pnlApPaterno = new javax.swing.JPanel();
-        txtApPaterno = new javax.swing.JTextField();
-        lblApPaterno = new javax.swing.JLabel();
-        pnlApMaterno = new javax.swing.JPanel();
-        txtApMaterno = new javax.swing.JTextField();
-        lblApMaterno = new javax.swing.JLabel();
-        pnlTelefono = new javax.swing.JPanel();
-        txtTelefono = new javax.swing.JTextField();
-        lblTelefono = new javax.swing.JLabel();
-        pnlCorreo = new javax.swing.JPanel();
-        txtCorreo = new javax.swing.JTextField();
-        lblCorreo = new javax.swing.JLabel();
-        pnlDireccion = new javax.swing.JPanel();
-        txtDireccion = new javax.swing.JTextField();
-        lblDireccion = new javax.swing.JLabel();
+        pnlCantidad = new javax.swing.JPanel();
+        txtCantidad = new javax.swing.JTextField();
+        lblCantidad = new javax.swing.JLabel();
+        pnlTipo = new javax.swing.JPanel();
+        txtTipo = new javax.swing.JTextField();
+        lblTipo = new javax.swing.JLabel();
         pnlBotones = new javax.swing.JPanel();
-        btnGuardar = new com.donacionAlimentos.view.components.PanelRound();
-        lblGuardar = new PLabelButton();
+        btnDonar = new com.donacionAlimentos.view.components.PanelRound();
+        lblDonar = new PLabelButton();
         btnCancelar = new com.donacionAlimentos.view.components.PanelRound();
         lblCancelar = new PLabelButton();
-        btnEliminar = new com.donacionAlimentos.view.components.PanelRound();
-        lblEliminar = new PLabelButton();
-        scrlPanePersonas = new javax.swing.JScrollPane();
-        tblPersonas = new javax.swing.JTable();
+        btnLimpieza = new com.donacionAlimentos.view.components.PanelRound();
+        lblLimpieza = new PLabelButton();
+        scrlPaneAlimentos = new javax.swing.JScrollPane();
+        tblAlimentos = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(37, 37, 64));
@@ -79,7 +73,7 @@ public class pnlPersonas extends javax.swing.JPanel {
         lblTituloDP.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         lblTituloDP.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloDP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloDP.setText("Informacion Personal");
+        lblTituloDP.setText("Informacion Alimento");
         pnlDatosPersonales.add(lblTituloDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 360, -1));
 
         pnlId.setOpaque(false);
@@ -111,116 +105,69 @@ public class pnlPersonas extends javax.swing.JPanel {
         lblNombre.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombre.setText("Nombre(s)");
+        lblNombre.setText("Nombre");
         pnlNombre.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
 
         pnlDatosPersonales.add(pnlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 300, 40));
 
-        pnlApPaterno.setOpaque(false);
-        pnlApPaterno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCantidad.setOpaque(false);
+        pnlCantidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtApPaterno.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtApPaterno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtApPaterno.setBorder(null);
-        pnlApPaterno.add(txtApPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 5, 170, 30));
+        txtCantidad.setEditable(false);
+        txtCantidad.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        txtCantidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCantidad.setBorder(null);
+        pnlCantidad.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
 
-        lblApPaterno.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblApPaterno.setForeground(new java.awt.Color(255, 255, 255));
-        lblApPaterno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblApPaterno.setText("Apellido Paterno");
-        pnlApPaterno.add(lblApPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 40));
+        lblCantidad.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCantidad.setText("Cantidad");
+        pnlCantidad.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
 
-        pnlDatosPersonales.add(pnlApPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 300, 40));
+        pnlDatosPersonales.add(pnlCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 300, 40));
 
-        pnlApMaterno.setOpaque(false);
-        pnlApMaterno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlTipo.setOpaque(false);
+        pnlTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtApMaterno.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtApMaterno.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtApMaterno.setBorder(null);
-        pnlApMaterno.add(txtApMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 5, 170, 30));
+        txtTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        txtTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTipo.setBorder(null);
+        pnlTipo.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
 
-        lblApMaterno.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblApMaterno.setForeground(new java.awt.Color(255, 255, 255));
-        lblApMaterno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblApMaterno.setText("Apellido Materno");
-        pnlApMaterno.add(lblApMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 40));
+        lblTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTipo.setText("Tipo");
+        pnlTipo.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
 
-        pnlDatosPersonales.add(pnlApMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 40));
+        pnlDatosPersonales.add(pnlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 40));
 
-        pnlTelefono.setOpaque(false);
-        pnlTelefono.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtTelefono.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtTelefono.setBorder(null);
-        pnlTelefono.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
-
-        lblTelefono.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
-        lblTelefono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTelefono.setText("Telefono");
-        pnlTelefono.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
-
-        pnlDatosPersonales.add(pnlTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 300, 40));
-
-        pnlCorreo.setOpaque(false);
-        pnlCorreo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtCorreo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtCorreo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtCorreo.setBorder(null);
-        pnlCorreo.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
-
-        lblCorreo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCorreo.setText("Correo");
-        pnlCorreo.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
-
-        pnlDatosPersonales.add(pnlCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 300, 40));
-
-        pnlDireccion.setOpaque(false);
-        pnlDireccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtDireccion.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDireccion.setBorder(null);
-        pnlDireccion.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
-
-        lblDireccion.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
-        lblDireccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDireccion.setText("Direccion");
-        pnlDireccion.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
-
-        pnlDatosPersonales.add(pnlDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 300, 40));
-
-        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 320));
+        add(pnlDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 370, 200));
 
         pnlBotones.setOpaque(false);
         pnlBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnGuardar.setBackground(new java.awt.Color(0, 102, 0));
-        btnGuardar.setRoundBottomLeft(20);
-        btnGuardar.setRoundBottomRight(20);
-        btnGuardar.setRoundTopLeft(20);
-        btnGuardar.setRoundTopRight(20);
-        btnGuardar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnDonar.setBackground(new java.awt.Color(0, 102, 0));
+        btnDonar.setRoundBottomLeft(20);
+        btnDonar.setRoundBottomRight(20);
+        btnDonar.setRoundTopLeft(20);
+        btnDonar.setRoundTopRight(20);
+        btnDonar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblGuardar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        lblGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGuardar.setText("GUARDAR");
-        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblDonar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblDonar.setForeground(new java.awt.Color(255, 255, 255));
+        lblDonar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDonar.setText("DONAR");
+        lblDonar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblDonar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblGuardarMouseClicked(evt);
+                lblDonarMouseClicked(evt);
             }
         });
-        btnGuardar.add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
+        btnDonar.add(lblDonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
 
-        pnlBotones.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 140, 30));
+        pnlBotones.add(btnDonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 140, 30));
 
         btnCancelar.setBackground(new java.awt.Color(0, 51, 153));
         btnCancelar.setRoundBottomLeft(20);
@@ -243,33 +190,33 @@ public class pnlPersonas extends javax.swing.JPanel {
 
         pnlBotones.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 140, 30));
 
-        btnEliminar.setBackground(new java.awt.Color(153, 0, 0));
-        btnEliminar.setRoundBottomLeft(20);
-        btnEliminar.setRoundBottomRight(20);
-        btnEliminar.setRoundTopLeft(20);
-        btnEliminar.setRoundTopRight(20);
-        btnEliminar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnLimpieza.setBackground(new java.awt.Color(153, 0, 0));
+        btnLimpieza.setRoundBottomLeft(20);
+        btnLimpieza.setRoundBottomRight(20);
+        btnLimpieza.setRoundTopLeft(20);
+        btnLimpieza.setRoundTopRight(20);
+        btnLimpieza.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEliminar.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        lblEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEliminar.setText("ELIMINAR");
-        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLimpieza.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblLimpieza.setForeground(new java.awt.Color(255, 255, 255));
+        lblLimpieza.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLimpieza.setText("LIMPIAR CADUCADOS");
+        lblLimpieza.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblLimpieza.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblEliminarMouseClicked(evt);
+                lblLimpiezaMouseClicked(evt);
             }
         });
-        btnEliminar.add(lblEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 30));
+        btnLimpieza.add(lblLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 30));
 
-        pnlBotones.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 290, 30));
+        pnlBotones.add(btnLimpieza, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 290, 30));
 
         add(pnlBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 380, 100));
 
-        scrlPanePersonas.setBackground(new java.awt.Color(255, 255, 255));
-        scrlPanePersonas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        scrlPaneAlimentos.setBackground(new java.awt.Color(255, 255, 255));
+        scrlPaneAlimentos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
+        tblAlimentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -277,19 +224,19 @@ public class pnlPersonas extends javax.swing.JPanel {
 
             }
         ));
-        tblPersonas.setDefaultEditor(Object.class, null);
-        tblPersonas.getTableHeader().setReorderingAllowed(false);
-        tblPersonas.setRowHeight(25);
-        tblPersonas.setShowGrid(true);
-        tblPersonas.setGridColor(java.awt.Color.LIGHT_GRAY);
-        tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblAlimentos.setDefaultEditor(Object.class, null);
+        tblAlimentos.getTableHeader().setReorderingAllowed(false);
+        tblAlimentos.setRowHeight(25);
+        tblAlimentos.setShowGrid(true);
+        tblAlimentos.setGridColor(java.awt.Color.LIGHT_GRAY);
+        tblAlimentos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPersonasMouseClicked(evt);
+                tblAlimentosMouseClicked(evt);
             }
         });
-        scrlPanePersonas.setViewportView(tblPersonas);
+        scrlPaneAlimentos.setViewportView(tblAlimentos);
 
-        add(scrlPanePersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
+        add(scrlPaneAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -300,112 +247,68 @@ public class pnlPersonas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        buscarPersonas();
+        buscarAlimentos();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
+    private void tblAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAlimentosMouseClicked
         cargarDatos();
-    }//GEN-LAST:event_tblPersonasMouseClicked
+    }//GEN-LAST:event_tblAlimentosMouseClicked
 
-    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
-        guardarPersona();
-    }//GEN-LAST:event_lblGuardarMouseClicked
+    private void lblDonarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDonarMouseClicked
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        DlgBuscarPersonas dlg = new DlgBuscarPersonas(frame, true);
+        dlg.setLocationRelativeTo(this);
+        dlg.setVisible(true);
+
+    }//GEN-LAST:event_lblDonarMouseClicked
 
     private void lblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarMouseClicked
         limpiarCampos();
     }//GEN-LAST:event_lblCancelarMouseClicked
 
-    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
-        eliminarPersona();
-    }//GEN-LAST:event_lblEliminarMouseClicked
+    private void lblLimpiezaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLimpiezaMouseClicked
+        eliminarCaducados();
+    }//GEN-LAST:event_lblLimpiezaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.donacionAlimentos.view.components.PanelRound btnCancelar;
-    private com.donacionAlimentos.view.components.PanelRound btnEliminar;
-    private com.donacionAlimentos.view.components.PanelRound btnGuardar;
-    private javax.swing.JLabel lblApMaterno;
-    private javax.swing.JLabel lblApPaterno;
+    private com.donacionAlimentos.view.components.PanelRound btnDonar;
+    private com.donacionAlimentos.view.components.PanelRound btnLimpieza;
     private javax.swing.JLabel lblCancelar;
-    private javax.swing.JLabel lblCorreo;
-    private javax.swing.JLabel lblDireccion;
-    private javax.swing.JLabel lblEliminar;
-    private javax.swing.JLabel lblGuardar;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblDonar;
     private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblLimpieza;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTituloDP;
-    private javax.swing.JPanel pnlApMaterno;
-    private javax.swing.JPanel pnlApPaterno;
     private javax.swing.JPanel pnlBotones;
-    private javax.swing.JPanel pnlCorreo;
+    private javax.swing.JPanel pnlCantidad;
     private com.donacionAlimentos.view.components.PanelRound pnlDatosPersonales;
-    private javax.swing.JPanel pnlDireccion;
     private javax.swing.JPanel pnlId;
     private javax.swing.JPanel pnlNombre;
-    private javax.swing.JPanel pnlTelefono;
-    private javax.swing.JScrollPane scrlPanePersonas;
-    private javax.swing.JTable tblPersonas;
-    private javax.swing.JTextField txtApMaterno;
-    private javax.swing.JTextField txtApPaterno;
+    private javax.swing.JPanel pnlTipo;
+    private javax.swing.JScrollPane scrlPaneAlimentos;
+    private javax.swing.JTable tblAlimentos;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 
     /**
      * metodo interno para cargar datos en la tabla
      */
-    private void cargarPersonas() {
-        tblPersonas.setModel(prsController.obtenerTablaPersonas());
+    private void cargarAlimentos() {
+        tblAlimentos.setModel(almController.obtenerTablaAlimentos());
     }
 
     /**
-     * metodo interno que usa el controlador para guardar personas
+     * metodo interno que usa el controlador para guardar alimentos
      */
-    private void guardarPersona() {
-        try {
-            String nombre = txtNombre.getText().trim();
-            String apPaterno = txtApPaterno.getText().trim();
-            String apMaterno = txtApMaterno.getText().trim();
-            String telefono = txtTelefono.getText().trim();
-            String correo = txtCorreo.getText().trim();
-            String direccion = txtDireccion.getText().trim();
-            //validaciones de campos
-            if (nombre.isEmpty() || apPaterno.isEmpty() || direccion.isEmpty() || correo.isEmpty() || telefono.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            //Guardar
-            if (lblGuardar.getText().equals("GUARDAR")) {
-                boolean exito = prsController.agregarPersona(nombre, apPaterno, apMaterno, telefono, correo, direccion);
-
-                if (exito) {
-                    JOptionPane.showMessageDialog(this, "persona registrada correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al registrar ala persona", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                //Actualizar
-            } else {
-                int id = Integer.parseInt(txtId.getText());
-                boolean exito = prsController.actualizarPersona(id, nombre, apPaterno, apMaterno, telefono, correo, direccion);
-                if (exito) {
-                    JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al actualizar los datos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
-            cargarPersonas();   // refrescar tabla
-            limpiarCampos();    // limpiar campos de texto
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    private void registrarDonacion() {
     }
 
     /**
@@ -414,66 +317,42 @@ public class pnlPersonas extends javax.swing.JPanel {
     private void limpiarCampos() {
         txtId.setText("0");
         txtNombre.setText("");
-        txtApPaterno.setText("");
-        txtApMaterno.setText("");
-        txtDireccion.setText("");
-        txtTelefono.setText("");
-        txtCorreo.setText("");
-        lblGuardar.setText("GUARDAR");
-        btnEliminar.setVisible(false);
+        txtCantidad.setText("");
+        txtTipo.setText("");
+        lblDonar.setText("GUARDAR");
+        btnLimpieza.setVisible(false);
     }
 
     /**
      * metodo de utileria
      */
     private void cargarDatos() {
-        int fila = tblPersonas.getSelectedRow();
+        int fila = tblAlimentos.getSelectedRow();
         if (fila >= 0) {
-            txtId.setText(tblPersonas.getValueAt(fila, 0).toString());
-            txtNombre.setText(tblPersonas.getValueAt(fila, 1).toString());
-            txtApPaterno.setText(tblPersonas.getValueAt(fila, 2).toString());
-            txtApMaterno.setText(tblPersonas.getValueAt(fila, 3).toString());
-            txtTelefono.setText(tblPersonas.getValueAt(fila, 4).toString());
-            txtCorreo.setText(tblPersonas.getValueAt(fila, 5).toString());
-            txtDireccion.setText(tblPersonas.getValueAt(fila, 6).toString());
-
-            lblGuardar.setText("ACTUALIZAR");
-            btnEliminar.setVisible(true);
+            txtId.setText(tblAlimentos.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblAlimentos.getValueAt(fila, 1).toString());
+            txtCantidad.setText(tblAlimentos.getValueAt(fila, 2).toString());
+            txtTipo.setText(tblAlimentos.getValueAt(fila, 3).toString());
+            lblDonar.setText("ACTUALIZAR");
+            btnLimpieza.setVisible(true);
         }
     }
-    
+
     /**
-     * metodo que usa el controlador para eliminar una persona
+     * metodo que usa el controlador para eliminar un alimento
      */
-    private void eliminarPersona() {
-        try {
-            int id = Integer.parseInt(txtId.getText());
-            int confirm = JOptionPane.showConfirmDialog(this,"¿Seguro que quieres eliminar a esta persona?","Confirmar eliminación",JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                boolean exito = prsController.eliminarPersona(id);
-
-                if (exito) {
-                    JOptionPane.showMessageDialog(this, "Persona eliminada correctamente.");
-                    cargarPersonas();
-                    limpiarCampos();
-                } else {
-                    JOptionPane.showMessageDialog(this,"Ocurrio un error al eliminar la persona.","Error",JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this,"Error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-        }
+    private void eliminarCaducados() {
     }
-    
+
     /**
      * metodo para usar el filtro modal
      */
-    private void buscarPersonas() {
+    private void buscarAlimentos() {
         String nombre = txtBuscar.getText().trim();
         if (nombre.isEmpty()) {
-            cargarPersonas();
+            cargarAlimentos();
         } else {
-            tblPersonas.setModel(prsController.obtenerTablaPersonasPorFiltro(nombre));
+            //tblAlimentos.setModel(prsController.obtenerTablaPersonasPorFiltro(nombre));
         }
     }
 }

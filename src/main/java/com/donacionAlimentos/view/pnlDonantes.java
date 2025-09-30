@@ -2,7 +2,6 @@ package com.donacionAlimentos.view;
 
 import com.donacionAlimentos.controllers.DonanteController;
 import com.donacionAlimentos.controllers.PersonaController;
-import com.donacionAlimentos.models.Donante;
 import com.donacionAlimentos.models.Persona;
 import com.donacionAlimentos.view.components.DlgBuscarPersonas;
 import com.donacionAlimentos.view.components.PLabelButton;
@@ -136,7 +135,7 @@ public class pnlDonantes extends javax.swing.JPanel {
 
         lblIconBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/busqueda-icon.png"))); // NOI18N
-        lblIconBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIconBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblIconBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblIconBuscarMouseClicked(evt);
@@ -196,7 +195,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblGuardar.setForeground(new java.awt.Color(255, 255, 255));
         lblGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGuardar.setText("GUARDAR");
-        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblGuardarMouseClicked(evt);
@@ -217,7 +216,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblCancelar.setForeground(new java.awt.Color(255, 255, 255));
         lblCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCancelar.setText("CANCELAR");
-        lblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCancelarMouseClicked(evt);
@@ -238,7 +237,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblEliminar.setForeground(new java.awt.Color(255, 255, 255));
         lblEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminar.setText("ELIMINAR");
-        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEliminarMouseClicked(evt);
@@ -252,7 +251,7 @@ public class pnlDonantes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        buscarPersonas();
+        buscarDonantes();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
@@ -316,7 +315,7 @@ public class pnlDonantes extends javax.swing.JPanel {
      * metodo que carga todos los donantes
      */
     private void cargarDonantes() {
-        tblDonantes.setModel(dntController.obtenerTablaPersonas());
+        tblDonantes.setModel(dntController.obtenerTablaDonantes());
     }
 
     /**
@@ -408,12 +407,12 @@ public class pnlDonantes extends javax.swing.JPanel {
     /**
      * metodo para usar el filtro modal
      */
-    private void buscarPersonas() {
+    private void buscarDonantes() {
         String tipo = txtBuscar.getText().trim();
         if (tipo.isEmpty()) {
             cargarDonantes();
         } else {
-            tblDonantes.setModel(dntController.obtenerTablaPersonasPorFiltro(tipo));
+            tblDonantes.setModel(dntController.obtenerTablaDonantesPorFiltro(tipo));
         }
     }
 }

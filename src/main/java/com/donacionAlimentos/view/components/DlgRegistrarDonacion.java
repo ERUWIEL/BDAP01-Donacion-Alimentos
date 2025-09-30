@@ -7,17 +7,17 @@ import com.donacionAlimentos.controllers.PersonaController;
  * clase que auda a seleccionar una persona
  * @author erwbyel
  */
-public class DlgBuscarPersonas extends javax.swing.JDialog {
+public class DlgRegistrarDonacion extends javax.swing.JDialog {
 
     private PersonaController prsController;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DlgBuscarPersonas.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DlgRegistrarDonacion.class.getName());
 
     /**
      * Creates new form DlgBuscarClientes
      * @param parent
      * @param modal
      */
-    public DlgBuscarPersonas(java.awt.Frame parent, boolean modal) {
+    public DlgRegistrarDonacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         prsController = new PersonaController();
@@ -127,7 +127,7 @@ public class DlgBuscarPersonas extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(() -> {
-            DlgBuscarPersonas dialog = new DlgBuscarPersonas(new javax.swing.JFrame(), true);
+            DlgRegistrarDonacion dialog = new DlgRegistrarDonacion(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {

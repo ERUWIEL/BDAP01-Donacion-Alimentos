@@ -136,18 +136,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         getContentPane().add(pnlNavegacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 50));
 
         pnlContenido.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlContenidoLayout = new javax.swing.GroupLayout(pnlContenido);
-        pnlContenido.setLayout(pnlContenidoLayout);
-        pnlContenidoLayout.setHorizontalGroup(
-            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
-        );
-        pnlContenidoLayout.setVerticalGroup(
-            pnlContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-
+        pnlContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(pnlContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 860, 550));
 
         pack();

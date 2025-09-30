@@ -1,8 +1,8 @@
 package com.donacionAlimentos.view;
 
 import com.donacionAlimentos.controllers.DonanteController;
+import com.donacionAlimentos.controllers.OrganizacionController;
 import com.donacionAlimentos.controllers.PersonaController;
-import com.donacionAlimentos.models.Donante;
 import com.donacionAlimentos.models.Persona;
 import com.donacionAlimentos.view.components.DlgBuscarPersonas;
 import com.donacionAlimentos.view.components.PLabelButton;
@@ -16,20 +16,20 @@ import javax.swing.SwingUtilities;
  *
  * @author erwbyel
  */
-public class pnlDonantes extends javax.swing.JPanel {
+public class pnlOrganizaciones extends javax.swing.JPanel {
 
-    private DonanteController dntController;
+    private OrganizacionController orgController;
     private PersonaController prsController;
     private Persona persona;
 
     /**
      * Creates new form pnlDonantes
      */
-    public pnlDonantes() {
+    public pnlOrganizaciones() {
         initComponents();
-        dntController = new DonanteController();
+        orgController = new OrganizacionController();
         prsController = new PersonaController();
-        cargarDonantes();
+        cargarOrganizaciones();
         btnEliminar.setVisible(false);
     }
 
@@ -42,21 +42,21 @@ public class pnlDonantes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlDatosDonante = new com.donacionAlimentos.view.components.PanelRound();
+        pnlDatosOrganizacion = new com.donacionAlimentos.view.components.PanelRound();
         lblTituloDD = new javax.swing.JLabel();
         pnlId = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         lblId = new javax.swing.JLabel();
-        pnlTipo = new javax.swing.JPanel();
-        txtTipo = new javax.swing.JTextField();
-        lblTipo = new javax.swing.JLabel();
+        pnlNombreOrg = new javax.swing.JPanel();
+        txtNombreOrg = new javax.swing.JTextField();
+        lblNombreOrg = new javax.swing.JLabel();
         pnlSeleccion = new javax.swing.JPanel();
         txtSeleccion = new javax.swing.JTextField();
         lblSeleccion = new javax.swing.JLabel();
         btnBuscar = new com.donacionAlimentos.view.components.PanelRound();
         lblIconBuscar = new javax.swing.JLabel();
-        scrlPaneDonantes = new javax.swing.JScrollPane();
-        tblDonantes = new javax.swing.JTable();
+        scrlPaneOrganizaciones = new javax.swing.JScrollPane();
+        tblOrganizaciones = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
         pnlBotones = new javax.swing.JPanel();
         btnGuardar = new com.donacionAlimentos.view.components.PanelRound();
@@ -70,16 +70,16 @@ public class pnlDonantes extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(860, 441));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlDatosDonante.setBackground(new java.awt.Color(23, 17, 55));
-        pnlDatosDonante.setRoundBottomRight(30);
-        pnlDatosDonante.setRoundTopRight(30);
-        pnlDatosDonante.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlDatosOrganizacion.setBackground(new java.awt.Color(23, 17, 55));
+        pnlDatosOrganizacion.setRoundBottomRight(30);
+        pnlDatosOrganizacion.setRoundTopRight(30);
+        pnlDatosOrganizacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloDD.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
         lblTituloDD.setForeground(new java.awt.Color(255, 255, 255));
         lblTituloDD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTituloDD.setText("Informacion Donante");
-        pnlDatosDonante.add(lblTituloDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 360, -1));
+        lblTituloDD.setText("Informacion Organizacion");
+        pnlDatosOrganizacion.add(lblTituloDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 360, -1));
 
         pnlId.setOpaque(false);
         pnlId.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,23 +97,24 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblId.setText("ID");
         pnlId.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
 
-        pnlDatosDonante.add(pnlId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 40));
+        pnlDatosOrganizacion.add(pnlId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 40));
 
-        pnlTipo.setOpaque(false);
-        pnlTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlNombreOrg.setOpaque(false);
+        pnlNombreOrg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        txtTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtTipo.setBorder(null);
-        pnlTipo.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
+        txtNombreOrg.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        txtNombreOrg.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNombreOrg.setBorder(null);
+        pnlNombreOrg.add(txtNombreOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 200, 30));
 
-        lblTipo.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
-        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTipo.setText("Tipo");
-        pnlTipo.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
+        lblNombreOrg.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        lblNombreOrg.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreOrg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombreOrg.setText("Nombre");
+        lblNombreOrg.setToolTipText("");
+        pnlNombreOrg.add(lblNombreOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 40));
 
-        pnlDatosDonante.add(pnlTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 300, 40));
+        pnlDatosOrganizacion.add(pnlNombreOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 300, 40));
 
         pnlSeleccion.setOpaque(false);
         pnlSeleccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,7 +137,7 @@ public class pnlDonantes extends javax.swing.JPanel {
 
         lblIconBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIconBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/busqueda-icon.png"))); // NOI18N
-        lblIconBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIconBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblIconBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblIconBuscarMouseClicked(evt);
@@ -146,14 +147,14 @@ public class pnlDonantes extends javax.swing.JPanel {
 
         pnlSeleccion.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 5, 50, 30));
 
-        pnlDatosDonante.add(pnlSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 300, 40));
+        pnlDatosOrganizacion.add(pnlSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 300, 40));
 
-        add(pnlDatosDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 370, 200));
+        add(pnlDatosOrganizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 370, 200));
 
-        scrlPaneDonantes.setBackground(new java.awt.Color(255, 255, 255));
-        scrlPaneDonantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        scrlPaneOrganizaciones.setBackground(new java.awt.Color(255, 255, 255));
+        scrlPaneOrganizaciones.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        tblDonantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrganizaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -161,19 +162,19 @@ public class pnlDonantes extends javax.swing.JPanel {
 
             }
         ));
-        tblDonantes.setDefaultEditor(Object.class, null);
-        tblDonantes.getTableHeader().setReorderingAllowed(false);
-        tblDonantes.setRowHeight(25);
-        tblDonantes.setShowGrid(true);
-        tblDonantes.setGridColor(java.awt.Color.LIGHT_GRAY);
-        tblDonantes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblOrganizaciones.setDefaultEditor(Object.class, null);
+        tblOrganizaciones.getTableHeader().setReorderingAllowed(false);
+        tblOrganizaciones.setRowHeight(25);
+        tblOrganizaciones.setShowGrid(true);
+        tblOrganizaciones.setGridColor(java.awt.Color.LIGHT_GRAY);
+        tblOrganizaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDonantesMouseClicked(evt);
+                tblOrganizacionesMouseClicked(evt);
             }
         });
-        scrlPaneDonantes.setViewportView(tblDonantes);
+        scrlPaneOrganizaciones.setViewportView(tblOrganizaciones);
 
-        add(scrlPaneDonantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
+        add(scrlPaneOrganizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 450));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -196,7 +197,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblGuardar.setForeground(new java.awt.Color(255, 255, 255));
         lblGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGuardar.setText("GUARDAR");
-        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblGuardarMouseClicked(evt);
@@ -217,7 +218,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblCancelar.setForeground(new java.awt.Color(255, 255, 255));
         lblCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCancelar.setText("CANCELAR");
-        lblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCancelarMouseClicked(evt);
@@ -238,7 +239,7 @@ public class pnlDonantes extends javax.swing.JPanel {
         lblEliminar.setForeground(new java.awt.Color(255, 255, 255));
         lblEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEliminar.setText("ELIMINAR");
-        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEliminarMouseClicked(evt);
@@ -252,11 +253,11 @@ public class pnlDonantes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        buscarPersonas();
+        buscarOrganizaciones();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
-        guardarDonante();
+        guardarOrganizaciones();
     }//GEN-LAST:event_lblGuardarMouseClicked
 
     private void lblCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCancelarMouseClicked
@@ -264,7 +265,7 @@ public class pnlDonantes extends javax.swing.JPanel {
     }//GEN-LAST:event_lblCancelarMouseClicked
 
     private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
-        eliminarDonante();
+        eliminarOrganizaciones();
     }//GEN-LAST:event_lblEliminarMouseClicked
 
     private void lblIconBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIconBuscarMouseClicked
@@ -281,9 +282,9 @@ public class pnlDonantes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblIconBuscarMouseClicked
 
-    private void tblDonantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonantesMouseClicked
+    private void tblOrganizacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrganizacionesMouseClicked
         cargarDatos();
-    }//GEN-LAST:event_tblDonantesMouseClicked
+    }//GEN-LAST:event_tblOrganizacionesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,36 +297,36 @@ public class pnlDonantes extends javax.swing.JPanel {
     private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblIconBuscar;
     private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblNombreOrg;
     private javax.swing.JLabel lblSeleccion;
-    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTituloDD;
     private javax.swing.JPanel pnlBotones;
-    private com.donacionAlimentos.view.components.PanelRound pnlDatosDonante;
+    private com.donacionAlimentos.view.components.PanelRound pnlDatosOrganizacion;
     private javax.swing.JPanel pnlId;
+    private javax.swing.JPanel pnlNombreOrg;
     private javax.swing.JPanel pnlSeleccion;
-    private javax.swing.JPanel pnlTipo;
-    private javax.swing.JScrollPane scrlPaneDonantes;
-    private javax.swing.JTable tblDonantes;
+    private javax.swing.JScrollPane scrlPaneOrganizaciones;
+    private javax.swing.JTable tblOrganizaciones;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombreOrg;
     private javax.swing.JTextField txtSeleccion;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 
     /**
-     * metodo que carga todos los donantes
+     * metodo que carga todos los organizaciones
      */
-    private void cargarDonantes() {
-        tblDonantes.setModel(dntController.obtenerTablaPersonas());
+    private void cargarOrganizaciones() {
+        tblOrganizaciones.setModel(orgController.obtenerTablaOrganizaciones());
     }
 
     /**
-     * metodo que permite guardar donantes con el controlador
+     * metodo que permite guardar organizaciones con el controlador
      */
-    private void guardarDonante() {
+    private void guardarOrganizaciones() {
         try {
-            String tipoDonante = txtTipo.getText().trim();
-            if (tipoDonante.isEmpty()) {
+            String nombreOrganizacion = txtNombreOrg.getText().trim();
+            if (nombreOrganizacion.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
@@ -333,25 +334,25 @@ public class pnlDonantes extends javax.swing.JPanel {
             //Guardar
             if (lblGuardar.getText().equals("GUARDAR") & persona != null) {
                 int idPersona = this.persona.getIdPersona();
-                boolean exito = dntController.agregarDonante(idPersona, tipoDonante);
+                boolean exito = orgController.agregarOrganizacion(idPersona, nombreOrganizacion);
                 if (exito) {
-                    JOptionPane.showMessageDialog(this, "donante registrada correctamente.");
+                    JOptionPane.showMessageDialog(this, "organizacion registrada correctamente.");
                 } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al registrar al donante", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al registrar al organizacion", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             //Actualizar
             } else {
                 int id = Integer.parseInt(txtId.getText());
-                boolean exito = dntController.actualizarDonante(id, tipoDonante);
+                boolean exito = orgController.actualizarOrganizacion(id, nombreOrganizacion);
                 if (exito) {
-                    JOptionPane.showMessageDialog(this, "Donante actualizado correctamente.");
+                    JOptionPane.showMessageDialog(this, "organizacion actualizado correctamente.");
                 } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al actualizar los datos del donante.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al actualizar los datos del organizacion.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
-            cargarDonantes();   // refrescar tabla
+            cargarOrganizaciones();   // refrescar tabla
             limpiarCampos();    // limpiar campos de texto
         } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -363,7 +364,7 @@ public class pnlDonantes extends javax.swing.JPanel {
      */
     private void limpiarCampos() {
         txtId.setText("0");
-        txtTipo.setText("");
+        txtNombreOrg.setText("");
         txtSeleccion.setText("");
         lblGuardar.setText("GUARDAR");
         btnEliminar.setVisible(false);
@@ -373,31 +374,31 @@ public class pnlDonantes extends javax.swing.JPanel {
      * metodo de utileria
      */
     private void cargarDatos() {
-        int fila = tblDonantes.getSelectedRow();
+        int fila = tblOrganizaciones.getSelectedRow();
         if (fila >= 0) {
-            txtId.setText(tblDonantes.getValueAt(fila, 0).toString());
-            txtTipo.setText(tblDonantes.getValueAt(fila, 1).toString());
+            txtId.setText(tblOrganizaciones.getValueAt(fila, 0).toString());
+            txtNombreOrg.setText(tblOrganizaciones.getValueAt(fila, 1).toString());
             lblGuardar.setText("ACTUALIZAR");
             btnEliminar.setVisible(true);
         }
     }
 
     /**
-     * metodo que usa el controlador para eliminar una persona
+     * metodo que usa el controlador para eliminar una organizacion
      */
-    private void eliminarDonante() {
+    private void eliminarOrganizaciones() {
         try {
             int id = Integer.parseInt(txtId.getText());
-            int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar a este donante?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Seguro que quieres eliminar a esta organizacion?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                boolean exito = dntController.eliminarDonante(id);
+                boolean exito = orgController.eliminarOrganizacion(id);
 
                 if (exito) {
-                    JOptionPane.showMessageDialog(this, "Donante eliminado correctamente.");
-                    cargarDonantes();
+                    JOptionPane.showMessageDialog(this, "Organizacion eliminado correctamente.");
+                    cargarOrganizaciones();
                     limpiarCampos();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrio un error al eliminar al donante.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error al eliminar al organizacion.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (HeadlessException | NumberFormatException e) {
@@ -408,12 +409,12 @@ public class pnlDonantes extends javax.swing.JPanel {
     /**
      * metodo para usar el filtro modal
      */
-    private void buscarPersonas() {
+    private void buscarOrganizaciones() {
         String tipo = txtBuscar.getText().trim();
         if (tipo.isEmpty()) {
-            cargarDonantes();
+            cargarOrganizaciones();
         } else {
-            tblDonantes.setModel(dntController.obtenerTablaPersonasPorFiltro(tipo));
+            tblOrganizaciones.setModel(orgController.obtenerTablaOrganizacionesPorFiltroModal(tipo));
         }
     }
 }

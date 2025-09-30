@@ -19,4 +19,8 @@ public interface IAlimentoDAO {
     boolean delete(int id);
 
     List<Alimento> readAll();
+    
+    List<Alimento> readByFilter(String filtro);
+    
+    List<Alimento> readByFilterModal(String filtro);
 }

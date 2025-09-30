@@ -22,16 +22,20 @@ public class OrganizacionController {
     }
     /**
      * metodo que permite agregar una organizacion
-     * @param organizacion
+     * @param idPersona
+     * @param nombreOrganizacion
      * @return 
      */
-    public boolean agregarOrganizacion(Organizacion organizacion) {
-        if (organizacion == null || organizacion.getIdPersona() <= 0
-                || organizacion.getNombreOrganizacion() == null || organizacion.getNombreOrganizacion().trim().isEmpty()) {
-            System.out.println("Error: Organización o datos obligatorios no válidos");
+    public boolean agregarOrganizacion(Integer idPersona, String nombreOrganizacion) {
+        if (idPersona == null || idPersona <= 0 || nombreOrganizacion.trim().isEmpty()) {
+            System.out.println("Error: Organizacion no válida");
             return false;
+        } else {
+            Organizacion organizacion = new Organizacion();
+            organizacion.setIdPersona(idPersona);
+            organizacion.setNombreOrganizacion(nombreOrganizacion);
+            return organizacionDAO.create(organizacion);
         }
-        return organizacionDAO.create(organizacion);
     }
     /**
      * metodo que permite buscar una organizacion
@@ -54,17 +58,20 @@ public class OrganizacionController {
     }
     /**
      * metodo que permite actualizar una organizacion
-     * @param organizacion
+     * @param idPersona
+     * @param nombreOrganizacion
      * @return 
      */
-    public boolean actualizarOrganizacion(Organizacion organizacion) {
-        if (organizacion == null || organizacion.getIdPersona() <= 0
-                || organizacion.getNombreOrganizacion() == null || organizacion.getNombreOrganizacion().trim().isEmpty()) {
-            System.out.println("Error: Organización no válida para actualizar");
+    public boolean actualizarOrganizacion(Integer idPersona, String nombreOrganizacion) {
+        if (idPersona == null || idPersona <= 0 || nombreOrganizacion.trim().isEmpty()) {
+            System.out.println("Error: Organizacion no válida");
             return false;
+        } else {
+            Organizacion organizacion = new Organizacion();
+            organizacion.setIdPersona(idPersona);
+            organizacion.setNombreOrganizacion(nombreOrganizacion);
+            return organizacionDAO.update(organizacion);
         }
-
-        return organizacionDAO.update(organizacion);
     }
     /**
      * metodo que permite eliminar una organizacion

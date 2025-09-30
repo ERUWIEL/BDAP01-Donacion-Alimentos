@@ -24,7 +24,7 @@ public class ConexionDB {
      * para no ser publicadas en git como codigo
      */
     static {
-        try (InputStream input = ConexionDB.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream input = ConexionDB.class.getClassLoader().getResourceAsStream("config/db.properties")) {
             Properties props = new Properties();
             if (input == null) {
                 throw new RuntimeException("no se pudo acceder al archivo de propiedades");
